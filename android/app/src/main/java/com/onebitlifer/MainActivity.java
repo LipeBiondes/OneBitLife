@@ -1,4 +1,4 @@
-package com.onebitlifer;
+package com.OneBitLife;
 
 import android.os.Build;
 import android.os.Bundle;
