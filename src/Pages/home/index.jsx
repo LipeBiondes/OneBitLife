@@ -4,9 +4,14 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 
 import LifeStatus from '../../Components/Common/LifeStatus'
 import StatusBar from '../../Components/Home/StatusBar'
+import CreateHabit from '../../Components/Home/CreateHabit'
 
 export default function Home() {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const [mindHabit, setmindHabit] = useState();
+  const [moneyHabit, setmoneyHabit] = useState();
+  const [bodyHabit, setbodyHabit] = useState();
+  const [funHabit, setfunHabit] = useState();
 
   function handleNavExplanation() {
     navigation.navigate('AppExplanation')
@@ -17,9 +22,9 @@ export default function Home() {
       <ScrollView>
         <View style={{ alignItems: 'center' }}>
           <Text style={styles.dailyChecks}>❤️ 20 dias - ✔️ 80 checks</Text>
-
           <LifeStatus />
           <StatusBar />
+          <CreateHabit habitArea={"Mente"} borderColor = '#90B7F3'/>
         </View>
 
         <Text
