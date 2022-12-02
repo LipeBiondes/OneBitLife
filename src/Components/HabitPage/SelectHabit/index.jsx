@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Image, StyleSheet } from "react-native";
-import { SelectList } from "react-native-dropdown-select-list";
-import HabitsData from '../../../DataBase/HabitsData';
+import React, { useEffect, useState } from 'react'
+import { Image, StyleSheet } from 'react-native'
+import { SelectList } from 'react-native-dropdown-select-list'
+import HabitsData from '../../../Database/HabitsData'
 
-export default function SelectHabit ({ habit, habitInput }) {
-  const [selected, setSelected] = useState(habit?.habitName ? habit?.habitName : "-");
-  const [data, setData] = useState();
+export default function SelectHabit({ habit, habitInput }) {
+  const [selected, setSelected] = useState(
+    habit?.habitName ? habit?.habitName : '-'
+  )
+  const [data, setData] = useState()
 
   useEffect(() => {
-    if (habit?.habitArea === "Mente") {
-      setData(HabitsData.dataMind);
+    if (habit?.habitArea === 'Mente') {
+      setData(HabitsData.dataMind)
     }
-    if (habit?.habitArea === "Financeiro") {
-      setData(HabitsData.dataMoney);
+    if (habit?.habitArea === 'Financeiro') {
+      setData(HabitsData.dataMoney)
     }
-    if (habit?.habitArea === "Corpo") {
-      setData(HabitsData.dataBody);
+    if (habit?.habitArea === 'Corpo') {
+      setData(HabitsData.dataBody)
     }
-    if (habit?.habitArea === "Humor") {
-      setData(HabitsData.dataFun);
+    if (habit?.habitArea === 'Humor') {
+      setData(HabitsData.dataFun)
     }
 
-    habitInput(habit?.habitName ? habit?.habitName : undefined);
-  }, []);
+    habitInput(habit?.habitName ? habit?.habitName : undefined)
+  }, [])
 
   return (
     <>
@@ -31,7 +33,7 @@ export default function SelectHabit ({ habit, habitInput }) {
         data={data}
         search={false}
         onSelect={() => {
-          habitInput(selected);
+          habitInput(selected)
         }}
         placeholder={selected}
         boxStyles={styles.boxStyle}
@@ -41,39 +43,39 @@ export default function SelectHabit ({ habit, habitInput }) {
         dropdownTextStyles={styles.dropdownTextStyle}
         arrowicon={
           <Image
-            source={require("../../../assets/icons/arrowDropdown.png")}
+            source={require('../../../assets/icons/arrowDropdown.png')}
             style={styles.arrow}
           />
         }
       />
     </>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   boxStyle: {
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 15
   },
   inputStyle: {
-    color: "white",
+    color: 'white'
   },
   dropdownStyle: {
-    borderWidth: 0,
+    borderWidth: 0
   },
   dropdownItemStyle: {
     borderWidth: 1,
-    borderColor: "#BBBB",
+    borderColor: '#BBBB',
     borderRadius: 10,
-    marginBottom: 15,
+    marginBottom: 15
   },
   dropdownTextStyle: {
-    color: "#BBBBBB",
+    color: '#BBBBBB'
   },
   arrow: {
     width: 20,
-    height: 20,
-  },
-});
+    height: 20
+  }
+})

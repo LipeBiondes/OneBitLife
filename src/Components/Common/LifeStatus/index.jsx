@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 25
   },
-  educacaoAnimacao:{
-    position: "absolute",
+  educacaoAnimacao: {
+    position: 'absolute',
     width: 100,
     marginTop: 50,
     marginLeft: 5
   },
   financasAnimacao: {
-    position: "absolute",
+    position: 'absolute',
     width: 100,
     marginTop: 50,
     marginLeft: 95

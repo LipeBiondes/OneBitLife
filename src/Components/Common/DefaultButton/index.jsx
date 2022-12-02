@@ -19,13 +19,13 @@ export default function DefaultButton({
 }
 
 const styles = StyleSheet.create({
-  button:{
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#FFFFFF',
     borderRadius: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   buttonText: {
     color: '#FFFFFF',

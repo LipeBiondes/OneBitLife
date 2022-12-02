@@ -15,7 +15,8 @@ export default function ExplanationCard() {
           style={styles.icon}
         />
         <Text style={styles.description}>
-          <Text style={styles.mind}>Mente: </Text> Hábitos para melhorar sua{'\n'}
+          <Text style={styles.mind}>Mente: </Text> Hábitos para melhorar sua
+          {'\n'}
           inteligência/sabedoria.
         </Text>
       </View>
@@ -26,7 +27,8 @@ export default function ExplanationCard() {
           style={styles.icon}
         />
         <Text style={styles.description}>
-          <Text style={styles.money}>Financeiro: </Text> Hábitos para te ajudar com{'\n'}
+          <Text style={styles.money}>Financeiro: </Text> Hábitos para te ajudar
+          com{'\n'}
           controle financeiro.
         </Text>
       </View>
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#151515',
     width: 350,
     borderRadius: 25,
-    padding: 30,
+    padding: 30
   },
   title: {
     fontWeight: 'bold',
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
   },
   explanationContainer: {
     flexDirection: 'row',
-    marginTop: 30,
+    marginTop: 30
   },
   icon: {
     width: 40,
