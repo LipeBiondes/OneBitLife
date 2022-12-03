@@ -1,14 +1,29 @@
-import React from 'react'
-import { View, StyleSheet, ScrollView, Text, handleNavHome } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import DefaultButton from '../../Components/Common/DefaultButton'
+
 import ExplanationCard from '../../Components/Explanation/ExplanationCard'
+import DefaultButton from '../../Components/Common/DefaultButton'
+import ChangeNavigationService from '../../Services/ChangeNavigationService'
 
 export default function AppExplanation() {
   const navigation = useNavigation()
+  const [showHome, setShowHome] = useState('false')
+  const startDate = new Date()
+  const appStartData = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`
 
   function handleNavHome() {
     navigation.navigate('Home')
+  }
+
+  function handleSetShowHome() {
+    if (showHome !== 'true') {
+      ChangeNavigationService.setShowHome({ showHome: 'true', appStartData })
+        .then(() => console.log(`Sucesso! ${showHome} ${appStartData}`))
+        .catch(err => console.log(err))
+      setShowHome('true')
+      handleNavHome()
+    }
   }
 
   return (
@@ -20,7 +35,7 @@ export default function AppExplanation() {
           </Text>
           <ExplanationCard />
           <Text style={styles.descriptionCta}>
-            Pronto(a) para subir de nível na vida ?
+            Pronto(a) para subir de nível na vida?
           </Text>
           <Text style={styles.description}>
             Na próxima tela você vai poder escolher {'\n'} seus 4 hábitos de
@@ -28,9 +43,9 @@ export default function AppExplanation() {
           </Text>
           <DefaultButton
             buttonText={'Continuar'}
-            handlePress={handleNavHome}
+            handlePress={handleSetShowHome}
             width={250}
-            heigth={50}
+            height={50}
           />
         </View>
       </ScrollView>
@@ -46,19 +61,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: 'white',
     textAlign: 'center',
     marginVertical: 40
   },
   descriptionCta: {
-    color: '#FFFFFF',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
-    marginBottom: 10,
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: 10
   },
   description: {
-    color: '#FFFFFF',
+    color: 'white',
     textAlign: 'center',
     marginBottom: 30
   }
