@@ -22,10 +22,13 @@ export default function AppExplanation() {
         .then(() => console.log(`Sucesso! ${showHome} ${appStartData}`))
         .catch(err => console.log(err))
       setShowHome('true')
+
       handleNavHome()
     }
-  }
 
+    handleNavHome()
+  }
+  
   return (
     <View style={styles.container}>
       <ScrollView>
