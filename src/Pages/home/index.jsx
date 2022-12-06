@@ -57,10 +57,17 @@ export default function Home({ route }) {
 
     ChangeNavigationService.checkShowHome(1)
       .then(showHome => {
-        const formDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
+        const month = `${today.getMonth() + 1}`.padStart(2, '0')
+        const day = `${today.getDate()}`.padStart(2, '0')
+        const formDate = `${today.getFullYear()}-${month}-${day}`
         const checkDays =
           new Date(formDate) - new Date(showHome.appStartData) + 1
-        setRobotDaysLife(checkDays.toString().padStart(2, '0'))
+
+        if (checkDays === 0) {
+          setRobotDaysLife(checkDays.toString().padStart(2, '0'))
+        } else {
+          setRobotDaysLife(parseInt(checkDays / (1000 * 3600 * 24)))
+        }
       })
       .catch(err => console.log(err))
   }, [route.params])
@@ -75,7 +82,12 @@ export default function Home({ route }) {
           </Text>
           <LifeStatus />
 
-          <StatusBar />
+          <StatusBar
+            mindHabit={mindHabit?.progressBar}
+            moneyHabit={moneyHabit?.progressBar}
+            bodyHabit={bodyHabit?.progressBar}
+            funHabit={funHabit?.progressBar}
+          />
 
           {mindHabit ? (
             <EditHabit habit={mindHabit} checkColor="#90B7F3" />
