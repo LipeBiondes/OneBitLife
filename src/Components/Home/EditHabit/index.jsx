@@ -10,6 +10,8 @@ export default function EditHabit({ habit, checkColor }) {
   const [checkImage, setCheckImage] = useState(
     require('../../../assets/icons/Mind.png')
   )
+  const checkData = new Date()
+  const formatDate = `${checkData.getFullYear()}-${checkData.getMonth()}-${checkData.getDate()}`
 
   function handleEdit() {
     navigation.navigate('HabitPage', {
@@ -17,9 +19,6 @@ export default function EditHabit({ habit, checkColor }) {
       habit
     })
   }
-
-  const checkData = new Date()
-  const formatDate = `${checkData.getFullYear()}-${checkData.getMonth()}-${checkData.getDate()}`
 
   function handleCheck() {
     if (habitCheck === 0) {
