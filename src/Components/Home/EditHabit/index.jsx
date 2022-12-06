@@ -16,6 +16,9 @@ export default function EditHabit({ habit, checkColor }) {
     })
   }
 
+  const checkData = new Date()
+  const formatDate = `${checkData.getFullYear()}-${checkData.getMonth()}-${checkData.getDate()}`
+
   function handleCheck() {
     if (habitCheck === 0) {
       setHabitCheck(1)
