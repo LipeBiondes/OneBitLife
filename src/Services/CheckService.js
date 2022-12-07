@@ -1,4 +1,5 @@
 import db from '../Database'
+import HabitsService from './HabitsService'
 
 const checkHabit = obj => {
   return new Promise((resolve, reject) => {
