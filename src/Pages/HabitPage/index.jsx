@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, setHabitInput } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   View,
   Text,
@@ -8,7 +8,6 @@ import {
   ScrollView,
   Alert
 } from 'react-native'
-
 import { useNavigation } from '@react-navigation/native'
 import * as Notifications from 'expo-notifications'
 import NotificationService from '../../Services/NotificationService'
@@ -40,11 +39,8 @@ export default function HabitPage({ route }) {
   const { create, habit } = route.params
 
   const habitCreated = new Date()
-  const formatDate = `${habitCreated.getFullYear()}-${
-    habitCreated.getMonth() + 1
-  }-${habitCreated.getDate()}`
+  const formatDate = `${habitCreated.getFullYear()}-${habitCreated.getMonth()}-${habitCreated.getDate()}`
 
-  // Notification Creation
   const [notification, setNotification] = useState(false)
   const notificationListener = useRef()
   const responseListener = useRef()
@@ -87,7 +83,8 @@ export default function HabitPage({ route }) {
         lastCheck: formatDate,
         daysWithoutChecks: 0,
         habitIsChecked: 0,
-        progressBar: 1
+        progressBar: 1,
+        habitChecks: 0
       }).then(() => {
         Alert.alert('Sucesso na criação do hábito!')
 
@@ -123,6 +120,7 @@ export default function HabitPage({ route }) {
             timeNotification
           )
         }
+
         navigation.navigate('Home', {
           updatedHabit: `Updated in ${habit?.habitArea}`
         })
@@ -144,7 +142,6 @@ export default function HabitPage({ route }) {
     }
   }, [notificationToggle])
 
-  // Notification Get Token
   useEffect(() => {
     notificationListener.current =
       Notifications.addNotificationReceivedListener(notification => {
@@ -175,7 +172,6 @@ export default function HabitPage({ route }) {
               style={styles.arrowBack}
             />
           </TouchableOpacity>
-
           <View style={styles.mainContent}>
             <Text style={styles.title}>Configurações {'\n'} de hábito</Text>
             <Text style={styles.inputText}>Área</Text>
@@ -214,8 +210,8 @@ export default function HabitPage({ route }) {
             {create === false ? (
               <UpdateExcludeButtons
                 handleUpdate={handleUpdateHabit}
-                habitInput={habitInput}
                 habitArea={habit?.habitArea}
+                habitInput={habitInput}
               />
             ) : (
               <View style={styles.configButton}>
@@ -251,6 +247,9 @@ const styles = StyleSheet.create({
   mainContent: {
     width: 250,
     alignSelf: 'center'
+  },
+  configButton: {
+    alignItems: 'center'
   },
   title: {
     fontWeight: 'bold',
